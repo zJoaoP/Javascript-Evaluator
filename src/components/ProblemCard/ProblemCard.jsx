@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -13,21 +14,9 @@ import {
 import evaluate from 'helpers/evaluation';
 
 const STATUS = {
-  TO_EVALUATE: (
-    <EvaluationResult color="#FFD700">
-      A avaliar..
-    </EvaluationResult>
-  ),
-  SUCCESS: (
-    <EvaluationResult color="#00FF00">
-      Sucesso!
-    </EvaluationResult>
-  ),
-  FAILURE: (
-    <EvaluationResult color="#FF0000">
-      Fracasso!
-    </EvaluationResult>
-  ),
+  TO_EVALUATE: <EvaluationResult color="#FFD700">A avaliar..</EvaluationResult>,
+  SUCCESS: <EvaluationResult color="#00FF00">Sucesso!</EvaluationResult>,
+  FAILURE: <EvaluationResult color="#FF0000">Fracasso!</EvaluationResult>,
 };
 
 export default function ProblemCard({ name, description, inputs, outputs }) {
