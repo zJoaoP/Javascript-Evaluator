@@ -27,6 +27,13 @@ const problems = [
     inputs: [['2 10'], ['0 0'], ['-2 -1']],
     outputs: ['10\n', '0\n', '-1\n'],
   },
+  {
+    name: 'Na faixa!',
+    description:
+      'Leia uma sequência contendo 10 valores e, em seguida, imprima apenas os valores entre [10, 20].',
+    inputs: [['2 4 6 8 10 12 14 16 18 19']],
+    outputs: ['10 12 14 16 18 19\n'],
+  },
 ];
 
 function App() {
