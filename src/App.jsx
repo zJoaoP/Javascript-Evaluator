@@ -31,8 +31,30 @@ const problems = [
     name: 'Na faixa!',
     description:
       'Leia uma sequência contendo 10 valores e, em seguida, imprima apenas os valores entre [10, 20].',
-    inputs: [['2 4 6 8 10 12 14 16 18 19']],
-    outputs: ['10 12 14 16 18 19\n'],
+    inputs: [['2 4 6 8 10 12 14 16 18 19'], ['1 2 3 4 5']],
+    outputs: ['10 12 14 16 18 19\n', '\n'],
+  },
+  {
+    name: 'Produto de Vetores',
+    description:
+      'Leia duas sequências de mesmo tamanho e, em seguida, imprima o resultado do produto das sequências. (element-wise)',
+    inputs: [
+      ['1', '2'],
+      ['1 2', '3 4'],
+      ['0 1 2', '3 4 5'],
+    ],
+    outputs: ['2\n', '3 8\n', '0 4 10\n'],
+  },
+  {
+    name: 'Pares e Ímpares',
+    description:
+      'Leia duas sequências A e B de mesmo tamanho e em seguida, crie uma nova sequência contendo os valores de A nas posições pares e os valores de B nas posições ímpares.',
+    inputs: [
+      ['1', '2'],
+      ['1 2', '3 4'],
+      ['0 1 2', '3 4 5'],
+    ],
+    outputs: ['1 2\n', '1 3 2 4\n', '0 3 1 4 2 5\n'],
   },
 ];
 
