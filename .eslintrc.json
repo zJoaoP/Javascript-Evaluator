@@ -12,7 +12,9 @@
     "sourceType": "module"
   },
   "plugins": ["react"],
-  "rules": {},
+  "rules": {
+    "object-curly-newline": "off"
+  },
   "settings": {
     "import/resolver": {
       "node": {
