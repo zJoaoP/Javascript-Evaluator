@@ -5,7 +5,6 @@ import React from 'react';
 import {
   CustomCard,
   Description,
-  CodeTextArea,
   SubmitButton,
   SubmitWrapper,
   ErrorDescription,
@@ -16,6 +15,10 @@ import ExpansibleContainer from 'components/ExpansibleContainer/ExpansibleContai
 import CaseViewer from 'components/CaseViewer/CaseViewer';
 
 import evaluate from 'helpers/evaluation';
+
+import CodeMirror from '@uiw/react-codemirror';
+import 'codemirror/keymap/sublime';
+import 'codemirror/theme/monokai.css';
 
 const STATUS = {
   TO_EVALUATE: <EvaluationResult color="#FFD700">A avaliar..</EvaluationResult>,
@@ -50,17 +53,7 @@ export default function ProblemCard({ name, description, inputs, outputs }) {
   }
 
   function handleCodeChange(e) {
-    setCode(e.target.value);
-  }
-
-  function handleCodeKeyDown(e) {
-    if (e.keyCode === 9) {
-      document.execCommand('insertHTML', false, '&#009');
-      e.preventDefault();
-    }
-    if (e.ctrlKey && e.code === 'Enter') {
-      handleSubmission();
-    }
+    setCode(e.getValue());
   }
 
   return (
@@ -68,11 +61,16 @@ export default function ProblemCard({ name, description, inputs, outputs }) {
       <Description>
         <div dangerouslySetInnerHTML={{ __html: description }} />
       </Description>
-      <CodeTextArea
-        rows={8}
+      <CodeMirror
         onChange={handleCodeChange}
-        onKeyDown={handleCodeKeyDown}
-        spellCheck="false"
+        height="250px"
+        options={{
+          viewportMargin: 5,
+          theme: 'monokai',
+          keyMap: 'sublime',
+          mode: 'js',
+          scrollbarStyle: 'null',
+        }}
       />
       {error && (
         <ErrorDescription color="#FF0000">{error.toString()}</ErrorDescription>
