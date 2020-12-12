@@ -8,6 +8,7 @@ import {
   CodeTextArea,
   SubmitButton,
   SubmitWrapper,
+  ErrorDescription,
   EvaluationResult,
 } from 'components/ProblemCard/style';
 
@@ -22,12 +23,23 @@ const STATUS = {
 export default function ProblemCard({ name, description, inputs, outputs }) {
   const [status, setStatus] = React.useState(STATUS.TO_EVALUATE);
   const [code, setCode] = React.useState('');
+  const [error, setError] = React.useState(undefined);
 
   function handleSubmitClick() {
+    setError(undefined);
     const result = inputs.filter((input, i) => {
-      const r = evaluate(code, JSON.parse(JSON.stringify(input)), outputs[i]);
-      return r;
+      const response = evaluate(
+        code,
+        JSON.parse(JSON.stringify(input)),
+        outputs[i]
+      );
+      if (typeof response !== 'boolean') {
+        setError(response);
+        return false;
+      }
+      return response;
     });
+
     setStatus(result.length < outputs.length ? STATUS.FAILURE : STATUS.SUCCESS);
   }
 
@@ -41,6 +53,9 @@ export default function ProblemCard({ name, description, inputs, outputs }) {
         <div dangerouslySetInnerHTML={{ __html: description }} />
       </Description>
       <CodeTextArea rows={8} onChange={handleCodeChange} />
+      {error && (
+        <ErrorDescription color="#FF0000">{error.toString()}</ErrorDescription>
+      )}
       <SubmitWrapper>
         {status}
         <SubmitButton onClick={handleSubmitClick}>Submeter</SubmitButton>

@@ -13,6 +13,10 @@ export const Description = styled(Typography)`
   margin-bottom: 24px;
 `;
 
+export const ErrorDescription = styled(Typography)`
+  color: ${(props) => props.color};
+`;
+
 export const EvaluationResult = styled(Typography)`
   color: ${(props) => props.color};
   text-align: center;
