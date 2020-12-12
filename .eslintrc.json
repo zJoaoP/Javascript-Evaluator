@@ -13,7 +13,17 @@
   },
   "plugins": ["react"],
   "rules": {
-    "object-curly-newline": "off"
+    "object-curly-newline": "off",
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "never",
+        "imports": "always-multiline",
+        "exports": "never",
+        "functions": "never",
+        "objects": "always-multiline"
+      }
+    ]
   },
   "settings": {
     "import/resolver": {

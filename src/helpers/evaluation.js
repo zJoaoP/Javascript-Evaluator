@@ -15,11 +15,13 @@ export default function evaluate(func, input, desiredOutput) {
     const oldLog = console.log;
     console.log = log;
 
-    eval(func);
-
+    try {
+      eval(func);
+    } catch (e) {
+      console.log = oldLog;
+      return e;
+    }
     console.log = oldLog;
-    console.log(output);
-
     return output === desiredOutput;
   }
   return wrapper();
