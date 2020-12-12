@@ -65,12 +65,16 @@ function App() {
       style={{
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
         alignItems: 'center',
       }}
     >
       <GlobalStyle />
-      <h1 style={{ fontSize: '75px' }}>Aula 2 - Javascript</h1>
+      <h1 style={{ fontSize: '75px', marginBottom: '0px' }}>
+        Exercícios de Javascript
+      </h1>
+      <h2 style={{ marginBottom: '30px' }}>
+        https://github.com/zJoaoP/Javascript-Evaluator
+      </h2>
       {problems.map((problem) => (
         <ProblemCard
           key={problem.name}
