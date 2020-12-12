@@ -17,7 +17,7 @@
     "comma-dangle": [
       "error",
       {
-        "arrays": "never",
+        "arrays": "always-multiline",
         "imports": "always-multiline",
         "exports": "never",
         "functions": "never",

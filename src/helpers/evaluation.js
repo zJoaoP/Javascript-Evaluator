@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-export default function evaluate(func, input, desiredOutput) {
+export default function evaluate(func, input) {
   let output = '';
 
   function log(text) {
@@ -22,7 +22,7 @@ export default function evaluate(func, input, desiredOutput) {
       return e;
     }
     console.log = oldLog;
-    return output === desiredOutput;
+    return output;
   }
   return wrapper();
 }
