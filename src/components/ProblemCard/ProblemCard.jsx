@@ -25,7 +25,7 @@ export default function ProblemCard({ name, description, inputs, outputs }) {
   const [code, setCode] = React.useState('');
   const [error, setError] = React.useState(undefined);
 
-  function handleSubmitClick() {
+  function handleSubmission() {
     setError(undefined);
     const result = inputs.filter((input, i) => {
       const response = evaluate(
@@ -47,18 +47,32 @@ export default function ProblemCard({ name, description, inputs, outputs }) {
     setCode(e.target.value);
   }
 
+  function handleCodeKeyDown(e) {
+    if (e.keyCode === 9) {
+      document.execCommand('insertHTML', false, '&#009');
+      e.preventDefault();
+    }
+    if (e.ctrlKey && e.code === 'Enter') {
+      handleSubmission();
+    }
+  }
+
   return (
     <CustomCard title={<h1>{name}</h1>}>
       <Description>
         <div dangerouslySetInnerHTML={{ __html: description }} />
       </Description>
-      <CodeTextArea rows={8} onChange={handleCodeChange} />
+      <CodeTextArea
+        rows={8}
+        onChange={handleCodeChange}
+        onKeyDown={handleCodeKeyDown}
+      />
       {error && (
         <ErrorDescription color="#FF0000">{error.toString()}</ErrorDescription>
       )}
       <SubmitWrapper>
         {status}
-        <SubmitButton onClick={handleSubmitClick}>Submeter</SubmitButton>
+        <SubmitButton onClick={handleSubmission}>Submeter</SubmitButton>
       </SubmitWrapper>
     </CustomCard>
   );
