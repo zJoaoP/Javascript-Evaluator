@@ -5,7 +5,9 @@ import { Card, Input, Typography, Button } from 'antd';
 const { TextArea } = Input;
 
 export const CustomCard = styled(Card)`
-  width: 50%;
+  max-width: 900px;
+  width: 90%;
+
   margin-top: 8px;
 `;
 
@@ -17,9 +19,15 @@ export const ErrorDescription = styled(Typography)`
   color: ${(props) => props.color};
 `;
 
+export const CodeWrapper = styled.div`
+  margin-bottom: 16px;
+`;
+
 export const EvaluationResult = styled(Typography)`
   color: ${(props) => props.color};
+
   text-align: center;
+  font-weight: bold;
   width: 50%;
 `;
 
@@ -39,5 +47,4 @@ export const SubmitButton = styled(Button)`
 
 export default {
   CustomCard,
-  CustomTextArea: CodeTextArea,
 };

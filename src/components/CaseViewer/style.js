@@ -2,15 +2,9 @@ import styled from 'styled-components';
 
 import { Card, Typography } from 'antd';
 
-export const ViewerWrapper = styled.div`
-  flex-direction: line;
-  display: flex;
-  flex-basis: 0;
-`;
-
 export const CaseCard = styled(Card)`
-  flex-basis: 33%;
-  flex-grow: 0;
+  flex-grow: 1;
+  height: 100%;
 `;
 
 export const CaseTypography = styled(Typography)`
@@ -19,6 +13,5 @@ export const CaseTypography = styled(Typography)`
 
 export default {
   CaseTypography,
-  ViewerWrapper,
   CaseCard,
 };
