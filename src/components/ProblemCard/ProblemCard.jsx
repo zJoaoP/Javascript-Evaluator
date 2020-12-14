@@ -5,6 +5,7 @@ import React from 'react';
 import {
   CustomCard,
   Description,
+  CodeWrapper,
   SubmitButton,
   SubmitWrapper,
   ErrorDescription,
@@ -61,17 +62,19 @@ export default function ProblemCard({ name, description, contexts, outputs }) {
       <Description>
         <div dangerouslySetInnerHTML={{ __html: description }} />
       </Description>
-      <CodeMirror
-        onChange={handleCodeChange}
-        height="250px"
-        options={{
-          viewportMargin: 5,
-          theme: 'monokai',
-          keyMap: 'sublime',
-          mode: 'js',
-          scrollbarStyle: 'null',
-        }}
-      />
+      <CodeWrapper>
+        <CodeMirror
+          onChange={handleCodeChange}
+          height="250px"
+          options={{
+            viewportMargin: 5,
+            theme: 'monokai',
+            keyMap: 'sublime',
+            mode: 'js',
+            scrollbarStyle: 'null',
+          }}
+        />
+      </CodeWrapper>
       {error && (
         <ErrorDescription color="#FF0000">{error.toString()}</ErrorDescription>
       )}
