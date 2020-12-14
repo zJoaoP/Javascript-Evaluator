@@ -5,7 +5,9 @@ import { Card, Input, Typography, Button } from 'antd';
 const { TextArea } = Input;
 
 export const CustomCard = styled(Card)`
-  width: 50%;
+  max-width: 900px;
+  width: 90%;
+
   margin-top: 8px;
 `;
 
