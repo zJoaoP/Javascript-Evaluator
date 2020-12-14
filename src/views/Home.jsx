@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ProblemCard from 'components/ProblemCard/ProblemCard';
+import Header from 'components/Header/Header';
 
 import api from 'service/problems';
 
@@ -18,13 +19,8 @@ export default function Home() {
   api.fetchProblems();
 
   return (
-    <div>
-      <h1 style={{ fontSize: '75px', marginBottom: '0px' }}>
-        Exercícios de Javascript
-      </h1>
-      <h2 style={{ marginBottom: '30px' }}>
-        https://github.com/zJoaoP/Javascript-Evaluator
-      </h2>
+    <div id="home">
+      <Header />
       {!loading &&
         problems.map((problem) => (
           <ProblemCard

@@ -11,6 +11,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Abel', sans-serif;
   }
 
+  html{
+    font-size: 12px;
+  }
+
   body{
     margin: 0;
     padding: 0;
