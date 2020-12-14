@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ProblemCard from 'components/ProblemCard/ProblemCard';
+import ProblemSection from 'components/ProblemSection/ProblemSection';
 import Header from 'components/Header/Header';
 
 import api from 'service/problems';
@@ -21,16 +21,7 @@ export default function Home() {
   return (
     <div id="home">
       <Header />
-      {!loading &&
-        problems.map((problem) => (
-          <ProblemCard
-            key={problem.name}
-            name={problem.name}
-            description={problem.description}
-            inputs={problem.inputs}
-            outputs={problem.outputs}
-          />
-        ))}
+      {!loading && <ProblemSection problems={problems} />}
     </div>
   );
 }
