@@ -7,22 +7,22 @@ import {
   CaseTypography,
 } from 'components/CaseViewer/style';
 
-export default function CaseViewer({ input, output, results }) {
+export default function CaseViewer({ context, output, result }) {
   return (
     <ViewerWrapper>
       <CaseCard title="Entrada">
-        <CaseTypography>
-          {input.reduce((acc, curr) => `${acc}${curr}\n`, '')}
-        </CaseTypography>
+        {Object.keys(context).map((k) => (
+          <CaseTypography key={k}>{`${k}: ${context[k]}`}</CaseTypography>
+        ))}
       </CaseCard>
       <CaseCard title="Saída Esperada">{output}</CaseCard>
-      <CaseCard title="Saída Obtida">{results}</CaseCard>
+      <CaseCard title="Saída Obtida">{result}</CaseCard>
     </ViewerWrapper>
   );
 }
 
 CaseViewer.propTypes = {
-  input: PropTypes.arrayOf(PropTypes.string).isRequired,
+  context: PropTypes.objectOf(PropTypes.any).isRequired,
   output: PropTypes.string.isRequired,
-  results: PropTypes.string.isRequired,
+  result: PropTypes.string.isRequired,
 };

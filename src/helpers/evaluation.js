@@ -1,28 +1,34 @@
 /* eslint-disable */
 
-export default function evaluate(func, input) {
+export default function evaluate(js, context) {
+  function foo() {
+    console.log(this);
+  }
+  foo();
+
   let output = '';
 
-  function log(text) {
+  const log = console.log;
+  console.log = (text) => {
     output += `${text}\n`;
+  };
+
+  function scopedEval(expr) {
+    const evaluator = Function.apply(null, [
+      ...Object.keys(context),
+      'expr',
+      'return eval(expr)',
+    ]);
+    return evaluator.apply(null, [...Object.values(context), expr]);
   }
 
-  function readline() {
-    return input.shift();
-  }
-
-  function wrapper() {
-    const oldLog = console.log;
+  try {
+    scopedEval(js);
+  } catch (e) {
     console.log = log;
-
-    try {
-      eval(func);
-    } catch (e) {
-      console.log = oldLog;
-      return e;
-    }
-    console.log = oldLog;
-    return output;
+    return e;
   }
-  return wrapper();
+
+  console.log = log;
+  return output;
 }

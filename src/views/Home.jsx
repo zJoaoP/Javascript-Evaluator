@@ -16,8 +16,6 @@ export default function Home() {
     return () => {};
   }, [problems]);
 
-  api.fetchProblems();
-
   return (
     <div id="home">
       <Header />

@@ -9,6 +9,7 @@ export const ViewerWrapper = styled.div`
 `;
 
 export const CaseCard = styled(Card)`
+  max-width: 100%;
   flex-basis: 33%;
   flex-grow: 0;
 `;

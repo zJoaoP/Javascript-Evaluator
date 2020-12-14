@@ -21,7 +21,9 @@ export const ErrorDescription = styled(Typography)`
 
 export const EvaluationResult = styled(Typography)`
   color: ${(props) => props.color};
+
   text-align: center;
+  font-weight: bold;
   width: 50%;
 `;
 
