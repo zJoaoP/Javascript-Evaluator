@@ -5,6 +5,7 @@ import React from 'react';
 import {
   CustomCard,
   Description,
+  CodeWrapper,
   SubmitButton,
   SubmitWrapper,
   ErrorDescription,
@@ -22,11 +23,11 @@ import 'codemirror/theme/monokai.css';
 
 const STATUS = {
   TO_EVALUATE: <EvaluationResult color="#FFD700">A avaliar..</EvaluationResult>,
-  SUCCESS: <EvaluationResult color="#00FF00">Sucesso!</EvaluationResult>,
+  SUCCESS: <EvaluationResult color="#00b300">Sucesso!</EvaluationResult>,
   FAILURE: <EvaluationResult color="#FF0000">Fracasso!</EvaluationResult>,
 };
 
-export default function ProblemCard({ name, description, inputs, outputs }) {
+export default function ProblemCard({ name, description, contexts, outputs }) {
   const [status, setStatus] = React.useState(STATUS.TO_EVALUATE);
   const [error, setError] = React.useState(undefined);
   const [results, setResults] = React.useState([]);
@@ -36,7 +37,7 @@ export default function ProblemCard({ name, description, inputs, outputs }) {
     const currentResults = [];
     setError(undefined);
 
-    const result = inputs.filter((input, i) => {
+    const result = contexts.filter((input, i) => {
       const response = evaluate(code, JSON.parse(JSON.stringify(input)));
       if (typeof response !== 'string') {
         currentResults.push(response.toString());
@@ -61,17 +62,19 @@ export default function ProblemCard({ name, description, inputs, outputs }) {
       <Description>
         <div dangerouslySetInnerHTML={{ __html: description }} />
       </Description>
-      <CodeMirror
-        onChange={handleCodeChange}
-        height="250px"
-        options={{
-          viewportMargin: 5,
-          theme: 'monokai',
-          keyMap: 'sublime',
-          mode: 'js',
-          scrollbarStyle: 'null',
-        }}
-      />
+      <CodeWrapper>
+        <CodeMirror
+          onChange={handleCodeChange}
+          height="250px"
+          options={{
+            viewportMargin: 5,
+            theme: 'monokai',
+            keyMap: 'sublime',
+            mode: 'js',
+            scrollbarStyle: 'null',
+          }}
+        />
+      </CodeWrapper>
       {error && (
         <ErrorDescription color="#FF0000">{error.toString()}</ErrorDescription>
       )}
@@ -80,10 +83,10 @@ export default function ProblemCard({ name, description, inputs, outputs }) {
           title="Resultados"
           content={outputs.map((out, i) => (
             <CaseViewer
-              key={`${inputs[i]}_${out}`}
-              input={inputs[i]}
+              key={`${contexts[i]}_${out}`}
+              context={contexts[i]}
               output={out}
-              results={results[i]}
+              result={results[i]}
             />
           ))}
         />
@@ -99,6 +102,6 @@ export default function ProblemCard({ name, description, inputs, outputs }) {
 ProblemCard.propTypes = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  inputs: PropTypes.arrayOf(PropTypes.array).isRequired,
+  contexts: PropTypes.arrayOf(PropTypes.object).isRequired,
   outputs: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

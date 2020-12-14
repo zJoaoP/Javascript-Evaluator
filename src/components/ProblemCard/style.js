@@ -19,9 +19,15 @@ export const ErrorDescription = styled(Typography)`
   color: ${(props) => props.color};
 `;
 
+export const CodeWrapper = styled.div`
+  margin-bottom: 16px;
+`;
+
 export const EvaluationResult = styled(Typography)`
   color: ${(props) => props.color};
+
   text-align: center;
+  font-weight: bold;
   width: 50%;
 `;
 
@@ -41,5 +47,4 @@ export const SubmitButton = styled(Button)`
 
 export default {
   CustomCard,
-  CustomTextArea: CodeTextArea,
 };

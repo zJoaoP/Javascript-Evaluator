@@ -12,7 +12,7 @@ export default function ProblemSection({ problems }) {
           key={problem.name}
           name={problem.name}
           description={problem.description}
-          inputs={problem.inputs}
+          contexts={problem.contexts}
           outputs={problem.outputs}
         />
       ))}
